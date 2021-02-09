@@ -7,15 +7,6 @@
 
 import Foundation
 
-// different implementations for iOS, TVOS, etc
-protocol Router {
-    associatedtype Question: Hashable
-    associatedtype Answer
-    
-    func routeTo(question: Question, answerCallback: @escaping (Answer) -> Void)
-    func routeTo(result: [Question : Answer])
-}
-
 // why is this a class?
 // --- plain data we're passing around? (struct)
 // --- or more like behavior? (class)
@@ -25,19 +16,21 @@ class Flow <R: Router> {
     // could have many implementations, therefore it's a protocol
     private let router: R
     private let questions: [R.Question]
-    private var result: [R.Question : R.Answer] = [:]
+    private var answers: [R.Question : R.Answer] = [:]
+    private var scoring: ([R.Question: R.Answer]) -> Int
     
     // could have multiple questions -> array
-    init(questions: [R.Question], router: R) {
+    init(questions: [R.Question], router: R, scoring: @escaping ([R.Question: R.Answer]) -> Int) {
         self.questions = questions
         self.router = router
+        self.scoring = scoring
     }
     
     func start() {
         if let firstQuestion = questions.first {
             router.routeTo(question: firstQuestion, answerCallback: nextCallback(from: firstQuestion))
         } else {
-            router.routeTo(result: result)
+            router.routeTo(result: result())
         }
     }
     
@@ -47,15 +40,20 @@ class Flow <R: Router> {
     
     private func routeNext(_ question: R.Question, _ answer: R.Answer) {
         if let currentQuestionIndex = questions.firstIndex(of: question) {
-            result[question] = answer
+            answers[question] = answer
             let nextQuestionIndex = currentQuestionIndex + 1
             if nextQuestionIndex < questions.count {
                 let nextQuestion = questions[nextQuestionIndex]
                 router.routeTo(question: nextQuestion, answerCallback: nextCallback(from: nextQuestion))
                 
             } else {
-                router.routeTo(result: result)
+                router.routeTo(result: result())
             }
         }
     }
+    
+    private func result() -> QuizResult<R.Question, R.Answer> {
+        return QuizResult(answers: answers, score: scoring(answers))
+    }
+    
 }
