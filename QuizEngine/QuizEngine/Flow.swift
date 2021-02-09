@@ -9,24 +9,26 @@ import Foundation
 
 // different implementations for iOS, TVOS, etc
 protocol Router {
-    typealias AnswerCallback = (String) -> Void
-    func routeTo(question: String, answerCallback: @escaping AnswerCallback)
-    func routeTo(result: [String : String])
+    associatedtype Question: Hashable
+    associatedtype Answer
+    
+    func routeTo(question: Question, answerCallback: @escaping (Answer) -> Void)
+    func routeTo(result: [Question : Answer])
 }
 
 // why is this a class?
 // --- plain data we're passing around? (struct)
 // --- or more like behavior? (class)
-class Flow {
+class Flow <R: Router> {
     
     // we need a router - type to use to communicate
     // could have many implementations, therefore it's a protocol
-    private let router: Router
-    private let questions: [String]
-    private var result: [String : String] = [:]
+    private let router: R
+    private let questions: [R.Question]
+    private var result: [R.Question : R.Answer] = [:]
     
     // could have multiple questions -> array
-    init(questions: [String], router: Router) {
+    init(questions: [R.Question], router: R) {
         self.questions = questions
         self.router = router
     }
@@ -39,11 +41,11 @@ class Flow {
         }
     }
     
-    private func nextCallback(from question: String) -> Router.AnswerCallback {
+    private func nextCallback(from question: R.Question) -> (R.Answer) -> Void {
         return { [weak self] in self?.routeNext(question, $0) }
     }
     
-    private func routeNext(_ question: String, _ answer: String) {
+    private func routeNext(_ question: R.Question, _ answer: R.Answer) {
         if let currentQuestionIndex = questions.firstIndex(of: question) {
             result[question] = answer
             let nextQuestionIndex = currentQuestionIndex + 1
