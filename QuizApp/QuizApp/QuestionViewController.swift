@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
@@ -63,5 +62,4 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         return UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
     }
-    
 }
