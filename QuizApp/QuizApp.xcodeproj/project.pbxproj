@@ -22,8 +22,8 @@
 		F3682B0525D59E8800275F57 /* QuizEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3682B0325D59E8800275F57 /* QuizEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3682B0925D59F2900275F57 /* NavigationControllerRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B0825D59F2900275F57 /* NavigationControllerRouterTest.swift */; };
 		F3682B0C25D5A0A500275F57 /* NavigationControllerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B0B25D5A0A500275F57 /* NavigationControllerRouter.swift */; };
-		F3682B0F25D5B95900275F57 /* QuestionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B0E25D5B95900275F57 /* QuestionTest.swift */; };
-		F3682B1225D5C51300275F57 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B1125D5C51300275F57 /* Question.swift */; };
+		F3682B0F25D5B95900275F57 /* QuestionEnumTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B0E25D5B95900275F57 /* QuestionEnumTest.swift */; };
+		F3682B1225D5C51300275F57 /* QuestionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3682B1125D5C51300275F57 /* QuestionEnum.swift */; };
 		F36DF4A325D1EEB10036EF8E /* ResultsViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36DF4A225D1EEB10036EF8E /* ResultsViewControllerTest.swift */; };
 		F36DF4A725D1EECF0036EF8E /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36DF4A625D1EECF0036EF8E /* ResultsViewController.swift */; };
 		F36DF4AB25D1F0360036EF8E /* ResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F36DF4AA25D1F0360036EF8E /* ResultsViewController.xib */; };
@@ -74,8 +74,8 @@
 		F3682B0325D59E8800275F57 /* QuizEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = QuizEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3682B0825D59F2900275F57 /* NavigationControllerRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouterTest.swift; sourceTree = "<group>"; };
 		F3682B0B25D5A0A500275F57 /* NavigationControllerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerRouter.swift; sourceTree = "<group>"; };
-		F3682B0E25D5B95900275F57 /* QuestionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTest.swift; sourceTree = "<group>"; };
-		F3682B1125D5C51300275F57 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		F3682B0E25D5B95900275F57 /* QuestionEnumTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEnumTest.swift; sourceTree = "<group>"; };
+		F3682B1125D5C51300275F57 /* QuestionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionEnum.swift; sourceTree = "<group>"; };
 		F36DF4A225D1EEB10036EF8E /* ResultsViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerTest.swift; sourceTree = "<group>"; };
 		F36DF4A625D1EECF0036EF8E /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		F36DF4AA25D1F0360036EF8E /* ResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsViewController.xib; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				F3340E9A25D3073C00B37BC4 /* CorrectAnswerCell.swift */,
 				F3340E9E25D3075500B37BC4 /* WrongAnswerCell.swift */,
 				F3682B0B25D5A0A500275F57 /* NavigationControllerRouter.swift */,
-				F3682B1125D5C51300275F57 /* Question.swift */,
+				F3682B1125D5C51300275F57 /* QuestionEnum.swift */,
 			);
 			path = QuizApp;
 			sourceTree = "<group>";
@@ -152,7 +152,7 @@
 				F34AB62B25D1A7620037EC12 /* Info.plist */,
 				F36DF4B025D1FA0D0036EF8E /* TableViewHelpers.swift */,
 				F3682B0825D59F2900275F57 /* NavigationControllerRouterTest.swift */,
-				F3682B0E25D5B95900275F57 /* QuestionTest.swift */,
+				F3682B0E25D5B95900275F57 /* QuestionEnumTest.swift */,
 			);
 			path = QuizAppTests;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				F3682B0C25D5A0A500275F57 /* NavigationControllerRouter.swift in Sources */,
 				F34AB65D25D1AB9F0037EC12 /* QuestionViewController.swift in Sources */,
 				F34AB61325D1A7600037EC12 /* AppDelegate.swift in Sources */,
-				F3682B1225D5C51300275F57 /* Question.swift in Sources */,
+				F3682B1225D5C51300275F57 /* QuestionEnum.swift in Sources */,
 				F3340E9F25D3075500B37BC4 /* WrongAnswerCell.swift in Sources */,
 				F36DF4A725D1EECF0036EF8E /* ResultsViewController.swift in Sources */,
 				F3340E9725D3070A00B37BC4 /* PresentableAnswer.swift in Sources */,
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3682B0F25D5B95900275F57 /* QuestionTest.swift in Sources */,
+				F3682B0F25D5B95900275F57 /* QuestionEnumTest.swift in Sources */,
 				F3682B0925D59F2900275F57 /* NavigationControllerRouterTest.swift in Sources */,
 				F34AB65525D1AADF0037EC12 /* QuestionViewControllerTest.swift in Sources */,
 				F36DF4B125D1FA0D0036EF8E /* TableViewHelpers.swift in Sources */,
